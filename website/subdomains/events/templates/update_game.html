@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div align="center">
+<h1> {{game.against}} {{game.date}}</h1>
+</div>
+<br>
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 7px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 7px;
+}
+</style>
+
+
+
+
+
+
+<div class="table_component" role="region" tabindex="0">
+    <div>
+        <table>
+        <thead>
+        <tr>
+            <th>Player</th>
+            <th>Balance</th>
+            <th>Debt</th>
+            <th>Cash</th>
+            <th>Bank</th>
+            <th>Use balance</th>
+        </tr>
+    </thead>
+    <form method="post">
+
+    <tbody>
+        {{form.hidden_tag()}}
+        {% for nested in form.player_info %}
+        <tr>
+
+            <th>
+            {{nested.form.name.data}}
+            </th>
+            <th>
+            {{nested.form.balance.data}}
+            </th>
+            <th>
+            {{nested.form.amount()}}
+            </th>
+            <th>
+            {{nested.form.cash()}}
+            </th>
+            <th>
+            {{nested.form.bank()}}
+            </th>
+            <th>
+            {{nested.form.use_balance()}}
+            </th>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+        </table>
+    {{form.submit()}}
+    </form>
+</div>
+
+
+{% endblock %}

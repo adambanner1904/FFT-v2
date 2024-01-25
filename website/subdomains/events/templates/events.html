@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="btn-group d-flex" role="group" aria-label="Add event group">
+    <a role="button" class="btn btn-primary" href="{{url_for('events_bp.add_training')}}">Add a training session</a>
+    <a role="button" class="btn btn-primary" href="{{url_for('events_bp.add_game')}}">Add a game</a>
+</div>
+
+
+<div class="list-group mt-2">
+        {%for event in events%}
+            <div class="list-group-item">
+                 Game
+                | {{event.date}}
+                | {{event.against}}
+                | <a role="button" class="btn btn-primary" href=" {{ url_for( 'events_bp.update_game' , game_date=event.date) }} ">Add details</a>
+            </div>
+        {%endfor%}
+    </div>
+{% endblock %}

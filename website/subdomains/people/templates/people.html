@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div>
+        <a href="{{ url_for('people_bp.add_person') }}"
+           class="btn btn-lrg btn-primary" style="float: right;"> Add Player </a>
+    </div>
+
+
+    <div class="list-group mt-2">
+        {%for player in players%}
+            <div class="list-group-item">
+                 {{player.name.capitalize()}} | {{player.balance}} | <a href="{{ url_for('people_bp.edit_person', player_name=player.name) }}" class="btn btn-lrg btn-primary">Edit Player</a>
+            </div>
+        {%endfor%}
+    </div>
+
+{% endblock %}
